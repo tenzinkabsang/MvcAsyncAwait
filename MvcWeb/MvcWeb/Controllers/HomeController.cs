@@ -3,30 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+
+using MvcWeb.Filters;
+using MvcWeb.Service.Interfaces;
 
 namespace MvcWeb.Controllers
 {
+    [UseStopwatch]
+    [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+        private readonly IProductService _productService;
+        private readonly IWidgetService _widgetService;
+        private readonly IGizmoService _gizmoService;
 
-            return View();
+        private const string Synchronous = "Synchronous";
+        private const string Asynchronous = "Asynchronous";
+
+        public HomeController(IProductService productService, IWidgetService widgetService, IGizmoService gizmoService)
+        {
+            _productService = productService;
+            _widgetService = widgetService;
+            _gizmoService = gizmoService;
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
+       public ActionResult Products()
+       {
+           ViewBag.SyncOrAsync = Synchronous;
 
-            return View();
-        }
+           var model = _productService.GetProducts();
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+           return View(model);
+       }
     }
 }
