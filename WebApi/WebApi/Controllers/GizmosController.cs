@@ -25,6 +25,12 @@ namespace WebApi.Controllers
             await Task.Delay(Util.GetDelay(), cancelToken);
 
             return Gizmo.GetGizmos();
-        }       
+        } 
+      
+        //public IEnumerable<Gizmo> GetAllGizmos()
+        //{
+        //    Thread.Sleep(3000);
+        //    return Gizmo.GetGizmos();
+        //}
     }
 }

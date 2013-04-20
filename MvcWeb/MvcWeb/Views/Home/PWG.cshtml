@@ -1,0 +1,78 @@
+﻿@model MvcWeb.Models.ProdGizWidgetVM
+
+@{
+    ViewBag.Title = "PWG";
+}
+
+<h2>Synch Type: @ViewBag.SyncOrAsync</h2>
+<em>Elapsed time: @ViewBag.elapsedTime</em>
+
+<h2>Product List</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name        </th>
+        <th>Price        </th>
+    </tr>
+
+    @foreach (var item in Model.prodList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Widget  List</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name        </th>
+        <th>Price        </th>
+    </tr>
+
+    @foreach (var item in Model.widgetList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h2>Gizmo List </h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name        </th>
+        <th>Quantity        </th>
+        <th>&nbsp; &nbsp; &nbsp;           Intro Date        </th>
+
+    </tr>
+
+    @foreach (var item in Model.gizmoList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>&nbsp; &nbsp; &nbsp;  
+            @Html.DisplayFor(modelItem => item.IntroducedDate)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -10,8 +10,7 @@ namespace WebApi.Controllers
 {
     public class ProductsController : ApiController
     {
-        public async Task<IEnumerable<Product>> GetAllProducts(
-            CancellationToken cancelToken)
+        public async Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancelToken)
         {
             // "Simulate" this operation took a long time, but was able to run without
             // blocking the calling thread (i.e., it's doing I/O operations which are async)

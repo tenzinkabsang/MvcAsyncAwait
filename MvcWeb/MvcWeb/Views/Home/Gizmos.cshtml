@@ -1,20 +1,23 @@
-﻿@model IEnumerable<MvcWeb.Models.Product>
+﻿@model IEnumerable<MvcWeb.Models.Gizmo>
 
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "Gizmos";
 }
+
 
 <h2>@ViewBag.Title  @ViewBag.SyncOrAsync</h2>
 <em>Elapsed time: @ViewBag.elapsedTime</em>
 
-
-<table class="table">
+<table class="table table-hover table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+           Introduced 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
         </th>
 
     </tr>
@@ -25,11 +28,13 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.IntroducedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
         </td>
 
     </tr>
 }
 
 </table>
-

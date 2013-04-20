@@ -1,14 +1,13 @@
-﻿@model IEnumerable<MvcWeb.Models.Product>
+﻿@model IEnumerable<MvcWeb.Models.Widget>
 
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "Widgets";
 }
 
+
 <h2>@ViewBag.Title  @ViewBag.SyncOrAsync</h2>
-<em>Elapsed time: @ViewBag.elapsedTime</em>
 
-
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -16,7 +15,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
-
     </tr>
 
 @foreach (var item in Model) {
