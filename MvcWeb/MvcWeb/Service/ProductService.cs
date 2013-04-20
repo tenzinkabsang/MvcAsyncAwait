@@ -28,6 +28,7 @@ namespace MvcWeb.Service
             }
         }
 
+        // Using .NET 4.5
         public async Task<List<Product>> GetProductsAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             using (HttpClient httpClient = new HttpClient())
@@ -35,6 +36,27 @@ namespace MvcWeb.Service
                 var response = await httpClient.GetAsync(_productsUri, cancelToken);
 
                 return await response.Content.ReadAsAsync<List<Product>>();
+            }
+        }
+
+        // Using .NET 4.0 Task
+        public List<Product> GetProductsTasks()
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                List<Product> products = Enumerable.Empty<Product>().ToList();
+
+                httpClient.GetAsync(_productsUri).ContinueWith(
+                    t =>
+                        {
+                            HttpResponseMessage response = t.Result;
+                            response.EnsureSuccessStatusCode();
+
+                            response.Content.ReadAsAsync<List<Product>>()
+                                .ContinueWith(task => products = task.Result);
+                        });
+
+                return products;
             }
         }
        
